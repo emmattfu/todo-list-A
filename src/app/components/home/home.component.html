@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6" *ngFor="let todo of todos">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Todo list № {{ todo.id }}</h5>
+          <p class="card-text">{{ todo.title }}</p>
+          <button type="button" class="btn btn-primary mr-3" routerLink="/todos/{{ todo.id }}">Edit</button>
+          <button type="button" class="btn btn-danger" (click)="onDelete(todo.id)">Delete</button>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col-6 -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
+
+

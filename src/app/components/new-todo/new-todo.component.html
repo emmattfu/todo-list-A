@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title text-center">Add new task card here</h5>
+          <form novalidate (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <div class="form-group">
+              <label for="title">Task title</label>
+              <input type="text"
+                     class="form-control"
+                     id="title"
+                     [(ngModel)]="todo.title"
+                     name="title"
+                     required
+              >
+            </div>
+            <!-- /.form-group -->
+            <button type="submit" class="btn btn-primary">Add task</button>
+          </form>
+          <!-- /.form -->
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col-6 -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
