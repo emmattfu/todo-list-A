@@ -35,10 +35,13 @@ export class TodoEditComponent implements OnInit {
     });
   }
 
-  onEdit() {
+  onEdit(form) {
+    console.log(form);
     this.isReadonly = false;
     const updatedTodo = Object.assign({}, this.todo);
     this.todoService.updateTodo(updatedTodo).subscribe((data: Todo) => {
+      if (!data.title.length) return;
+
       this.toastr.success('Task edited', 'Success');
       this.router.navigate(['/'])
     }, error => {

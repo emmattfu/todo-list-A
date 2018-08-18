@@ -8,12 +8,15 @@
             <div class="form-group">
               <label for="title">Task title</label>
               <input type="text"
-                     class="form-control"
+                     class="form-control is-invalid"
                      id="title"
                      [(ngModel)]="todo.title"
                      name="title"
+                     #todoTitle="ngModel"
+                     [ngClass]="{'is-invalid': todoTitle.errors && form.submitted}"
                      required
               >
+              <div class="invalid-feedback" [hidden]="!todoTitle.errors?.required">Title is required</div>
             </div>
             <!-- /.form-group -->
             <button type="submit" class="btn btn-primary">Add task</button>

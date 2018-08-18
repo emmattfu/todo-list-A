@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Todo list № {{ todo?.id }}</h5>
-      <form>
+      <form novalidate (ngSubmit)="onEdit(form)" #form="ngForm">
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text"
@@ -11,9 +11,12 @@
                  id="title"
                  [ngModel]="todo?.title"
                  (ngModelChange)="todo.title = $event"
+                 #todoTitle="ngModel"
+                 [ngClass]="{'is-invalid': todoTitle.errors && form.submitted}"
                  required
                  [readonly] = isReadonly
           >
+          <div class="invalid-feedback" [hidden]="!todoTitle.errors?.required">Title is required</div>
         </div>
         <!-- /.form-group -->
         <div class="form-group">
@@ -45,7 +48,7 @@
         </div>
         <!-- /.form-group -->
         <button type="button" *ngIf="isReadonly" class="btn btn-primary" (click)="isReadonly = false">Edit</button>
-        <button type="button" *ngIf="!isReadonly" class="btn btn-primary"(click)="onEdit()">Save</button>
+        <button type="submit" *ngIf="!isReadonly" class="btn btn-primary">Save</button>
       </form>
       <!-- /form -->
     </div>
