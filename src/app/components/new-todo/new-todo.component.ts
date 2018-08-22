@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Todo } from "../../models/Todo";
-import { NgForm } from "@angular/forms";
 import { TodosService } from "../../services/todos.service";
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-new-todo',
@@ -12,13 +12,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./new-todo.component.css']
 })
 export class NewTodoComponent implements OnInit {
-  todo: Todo = {
-    title: '',
-    completed: false,
-    userId: 1
-  };
-
-  @ViewChild('form') form: NgForm;
+  newTaskForm: FormGroup;
+  isSubmitted: boolean;
 
   constructor(
     public todoService: TodosService,
@@ -28,15 +23,20 @@ export class NewTodoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.newTaskForm = new FormGroup({
+      title: new FormControl('', Validators.required),
+      userId: new FormControl(1, Validators.required)
+    })
   }
 
-  onSubmit(form) {
-    if (form.invalid) return;
+  onSubmit() {
+    this.isSubmitted = true;
+    if (this.newTaskForm.invalid) return;
 
     const newTask = {
-      title: this.todo.title,
-      completed: this.todo.completed,
-      userId: 1
+      title: this.newTaskForm.value.title,
+      userId: this.newTaskForm.value.userId,
+      completed: false
     };
 
     this.spinner.show();

@@ -4,19 +4,31 @@
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title text-center">Add new task card here</h5>
-          <form novalidate (ngSubmit)="onSubmit(form)" #form="ngForm">
+          <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="newTaskForm">
             <div class="form-group">
               <label for="title">Task title</label>
               <input type="text"
                      class="form-control is-invalid"
                      id="title"
-                     [(ngModel)]="todo.title"
-                     name="title"
-                     #todoTitle="ngModel"
-                     [ngClass]="{'is-invalid': todoTitle.errors && form.submitted}"
-                     required
+                     formControlName="title"
+                     [ngClass]="{'is-invalid': newTaskForm.get('title').invalid && isSubmitted}"
               >
-              <div class="invalid-feedback" [hidden]="!todoTitle.errors?.required">Title is required</div>
+
+              <div class="invalid-feedback" [hidden]="!newTaskForm.get('title').invalid">Title is required</div>
+            </div>
+            <!-- /.form-group -->
+            <div class="form-group">
+              <label for="userId">userId</label>
+              <input type="number"
+                     min="1"
+                     max="10"
+                     class="form-control is-invalid"
+                     id="userId"
+                     formControlName="userId"
+                     [ngClass]="{'is-invalid': newTaskForm.get('userId').invalid && isSubmitted}"
+              >
+
+              <div class="invalid-feedback" [hidden]="!newTaskForm.get('userId').invalid">Number from 1 to 10</div>
             </div>
             <!-- /.form-group -->
             <button type="submit" class="btn btn-primary">Add task</button>

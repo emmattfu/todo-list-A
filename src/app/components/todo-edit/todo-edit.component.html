@@ -2,21 +2,16 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Todo list № {{ todo?.id }}</h5>
-      <form novalidate (ngSubmit)="onEdit(form)" #form="ngForm">
+      <form *ngIf="todo" [formGroup]="editForm" (ngSubmit)="onEdit()">
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text"
-                 class="form-control"
-                 name="title"
                  id="title"
-                 [ngModel]="todo?.title"
-                 (ngModelChange)="todo.title = $event"
-                 #todoTitle="ngModel"
-                 [ngClass]="{'is-invalid': todoTitle.errors && form.submitted}"
-                 required
-                 [readonly] = isReadonly
+                 class="form-control"
+                 formControlName="title"
+                 [ngClass]="{'is-invalid': editForm.get('title').invalid && isSubmitted}"
           >
-          <div class="invalid-feedback" [hidden]="!todoTitle.errors?.required">Title is required</div>
+          <div class="invalid-feedback" [hidden]="!editForm.get('title').invalid && editForm.get('title').dirty">Title is required</div>
         </div>
         <!-- /.form-group -->
         <div class="form-group">
@@ -24,22 +19,16 @@
           <div class="form-control">
             <label class="radio-inline">
               <input type="radio"
-                     [value]="true"
-                     name="todocheck"
-                     [ngModel]="todo?.completed"
-                     (ngModelChange)="todo.completed = $event"
-                     [disabled] = !isReadonly
+                     value="true"
+                     formControlName="completed"
               >
               Finished
             </label>
             <label class="radio-inline">
               <input type="radio"
                      class="ml-3"
-                     [value]="false"
-                     name="todocheck"
-                     [ngModel]="todo?.completed"
-                     (ngModelChange)="todo.completed = $event"
-                     [disabled] = isReadonly
+                     value="false"
+                     formControlName="completed"
               >
               Not finished
             </label>
@@ -47,7 +36,7 @@
           <!-- /.form-control -->
         </div>
         <!-- /.form-group -->
-        <button type="button" *ngIf="isReadonly" class="btn btn-primary" (click)="isReadonly = false">Edit</button>
+        <button type="button" *ngIf="isReadonly" class="btn btn-primary" (click)="onEnable()">Edit</button>
         <button type="submit" *ngIf="!isReadonly" class="btn btn-primary">Save</button>
       </form>
       <!-- /form -->
@@ -57,3 +46,4 @@
   <!-- /.card -->
 </div>
 <!-- /.container -->
+
