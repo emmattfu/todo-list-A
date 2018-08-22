@@ -34,7 +34,7 @@
                    formControlName="password"
                    [ngClass]="{'is-invalid': registrationForm.get('password').invalid && isSubmitted}"
             >
-            <div class="invalid-feedback" *ngIf="registrationForm.get('password').invalid && isSubmitted">Please provide a valid password</div>
+            <div class="invalid-feedback" *ngIf="registrationForm.get('password').invalid && isSubmitted">Please provide a valid password (at least 8 characters  1 large letter and 1 number)</div>
           </div>
           <!-- /.form-group -->
           <button type="submit" class="btn btn-primary btn-block">Register</button>
