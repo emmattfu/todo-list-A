@@ -11,6 +11,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class HomeComponent implements OnInit {
   todos: Todo[];
+  time: number = Date.now();
+  testArr: number[] = [1, 5, 10];
 
   constructor(
     public todoService: TodosService,
@@ -27,6 +29,10 @@ export class HomeComponent implements OnInit {
       this.toastr.error(error.message, `Error`);
       this.spinner.hide();
     });
+
+    setTimeout(() => {
+      this.testArr.push(5);
+    }, 5000)
   }
 
   onDelete(id: number) {

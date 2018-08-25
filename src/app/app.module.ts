@@ -16,6 +16,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { RegisterComponent } from './components/register/register.component';
+import { MyDatePipe } from "./pipes/my-date.pipe";
+import { SumPipe } from "./pipes/sum.pipe";
+import { MyNgStyleDirective } from './directives/my-ng-style.directive';
+import { ClassDirective } from './directives/class.directive';
 
 @NgModule({
   declarations: [
@@ -26,8 +30,11 @@ import { RegisterComponent } from './components/register/register.component';
     NewTodoComponent,
     TodoEditComponent,
     LoginComponent,
-    RegisterComponent
-
+    RegisterComponent,
+    MyDatePipe,
+    SumPipe,
+    MyNgStyleDirective,
+    ClassDirective
   ],
   imports: [
     BrowserModule,
