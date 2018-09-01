@@ -21,20 +21,13 @@ import { SumPipe } from "./pipes/sum.pipe";
 import { MyNgStyleDirective } from './directives/my-ng-style.directive';
 import { ClassDirective } from './directives/class.directive';
 
+import { HomeModule } from "./modules/home-module/home.module";
+import {AuthModuleModule} from "./modules/auth-module/auth-module.module";
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
     NotFoundComponent,
-    NewTodoComponent,
-    TodoEditComponent,
-    LoginComponent,
-    RegisterComponent,
-    MyDatePipe,
-    SumPipe,
-    MyNgStyleDirective,
-    ClassDirective
   ],
   imports: [
     BrowserModule,
@@ -44,7 +37,9 @@ import { ClassDirective } from './directives/class.directive';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HomeModule,
+    AuthModuleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
