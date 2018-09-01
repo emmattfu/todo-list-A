@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HomeModule } from "./modules/home-module/home.module";
 import { AuthModuleModule } from "./modules/auth-module/auth-module.module";
 
+
 @NgModule({
   declarations: [
     AppComponent,
